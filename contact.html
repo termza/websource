@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+    
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8">
+    <title>Termza - Contact</title>
+
+    <!-- Responsive Design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Metadata -->
+    <meta name="description" content="Order high-quality edits">
+    <meta name="author" content="Term">
+    <meta name="keywords" content="Edit, Montage, Term, Termza, Termz, Editor, Programmer, Dev, Github, Dev.io, Tiktok,tiktok discord, gfx, vfx, Commission">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/Robs_logo_black.png" />
+
+    <!-- Stylesheets -->
+    <link href="assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="assets/style.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Engagement">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-GLhlTQ8i7uFkCpL6p1I8CIpLYjNl+fwYMWIc/6D5YIepHUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
+</head>
+
+<style>
+    .black-logo, .white-logo{
+        animation: jackInTheBox;
+        animation-duration: 2s;
+    }
+
+    label{
+        color: white;
+    }
+
+    .req{
+        color: red;
+    }
+
+    .form-group, .col-md-1, .col-md-2, .col-md-3,
+    .col-md-4, .col-md-5, .col-md-6, .col-md-7,
+    .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12
+    {
+        box-sizing: border-box;
+    }
+
+    .icon-revert{
+        transform: scaleX(-1) !important;
+    }
+
+    @media all and (max-width:767px) {
+        .order-steps .fa-angle-double-right {
+            transform: rotate(90deg);
+        }
+
+        #row_quotes{
+            text-align: center;
+        }
+
+        #row_quotes > .fa-quote-right,
+        #row_quotes > .fa-quote-right{
+            display: none;
+        }
+    }
+
+    .video-container {
+        position: relative;
+        overflow: hidden;
+        height: 0;
+        padding-bottom: 56.25%; /* creates a 16:9 aspect ratio */
+    }
+
+    .video-container iframe,
+    .video-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+    }
+
+    .video-wrap {
+        width: 100%;
+        max-width: 100%;
+    }
+</style>
+
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="../cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+<script src="../cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js" ></script>
+<script src="../cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/utils/Draggable.min.js" ></script>
+<script src='../cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js'></script>
+<script src='../cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js'></script>
+<script src="../vjs.zencdn.net/7.10.2/video.min.js"></script>
+<script src="assets/js/clapatwebgl.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/scripts.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-99KM2QZ2XL"></script>
+<script src="../www.google.com/recaptcha/apib091.js?render=explicit" async defer></script>
+<script src="https://www.paypal.com/sdk/js?client-id=Ae5SQLBuvcazAd2qklzY5LgAOn7m3Rlu0LjAKooeD89Zx27DTwQfsNs__7FYgHiTtX9CfGJ3bZXZnaXc&amp;currency=EUR"></script>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-99KM2QZ2XL');
+</script>
+
+<script>
+    function send_message(){
+        $.ajax({
+            url: "/contact/submit",
+            data: $('#contact_form').serialize(),
+            type: 'POST',
+            success: function (data) {
+                if(data == "1"){
+                    $('#message').text("Message successfully sent !");
+                    $('#message').attr('style', "color: green;");
+                }else{
+                    $('#message').text("Error, message not sent");
+                    $('#message').attr('style', "color: red;");
+                }
+            },
+
+            error: function (e, e2, e3) {
+                $('#message').text("Error, message not sent");
+                $('#message').attr('style', "color: red;");
+            }
+        });
+    }
+</script>            </head>
+    <body class="hidden hidden-ball smooth-scroll drag-scroll1" data-cursor-default-color="#f33a3a" data-cursor-hover-color="#f33a3a">
+        <main>
+            <div class="preloader-wrap" data-firstline="Stay" data-secondline="Relaxed">
+    <div class="outer">
+        <div class="inner">
+            <div class="percentage-wrapper"><div class="percentage" id="precent"></div></div>
+            <div class="trackbar">
+                <div class="loadbar"></div>
+            </div>
+        </div>
+    </div>
+</div>            <div class="cd-index cd-main-content">
+                <div id="page-content" class="light-content" data-bgcolor="#141414">
+                    <header class="fullscreen-menu">
+    <div id="header-container">
+
+        <!-- Logo -->
+        <div id="logo" class="hide-ball disable-drag">
+            <a class="ajax-link" data-type="page-transition" href="index.html">
+                <img class="black-logo" src="assets/images/Robs_logo_black.png" alt="Termz">
+                <img class="white-logo" src="assets/images/Robs_logo_white.png" alt="Termz">
+            </a>
+        </div>
+        <!--/Logo -->
+
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-height">
+                <div class="outer">
+                    <div class="inner">
+                        <ul data-breakpoint="10025" class="flexnav">
+                            <li class="link menu-timeline">
+                                <a href="#">
+                                    <div class="before-span">
+                                        <span data-hover="Termza">Termza</span>
+                                    </div>
+                                </a>
+                                <ul>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/1.html">Me</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/2.html">Portfolio</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/3.html">Commission</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/4.html">GFX</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/5.html">VFX</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/6.html">Interests</a>
+                                        </li>
+                                                                    </ul>
+                            </li>
+                            <li class="link menu-timeline">
+                                <a href="#">
+                                    <div class="before-span">
+                                        <span data-hover="Order">Order</span>
+                                    </div>
+                                </a>
+                                <ul>
+                                    <li><a class="ajax-link" data-type="page-transition" href="order.html" >Place an order</a></li>
+                                    <li><a class="ajax-link" data-type="page-transition" href="trackOrder.html">Track an order</a></li>
+                                </ul>
+                            </li>
+                            <li class="link menu-timeline">
+                                <a class="ajax-link" data-type="page-transition" href="about.html">
+                                    <div class="before-span">
+                                        <span data-hover="About">About</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="link menu-timeline" onclick="force_gc();">
+                                <a class="ajax-link" data-type="page-transition" href="contact.html">
+                                    <div class="before-span">
+                                        <span data-hover="Contact">Contact</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!--/Navigation -->
+
+        <!-- Menu Burger -->
+        <div class="button-wrap right menu disable-drag">
+            <div class="icon-wrap parallax-wrap">
+                <div class="button-icon parallax-element">
+                    <div id="burger-wrapper">
+                        <div id="menu-burger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-text sticky right"><span data-hover="Menu">Menu</span></div>
+        </div>
+        <!--/Menu Burger -->
+
+    </div>
+</header>                    <!-- Quick Menu -->
+<div id="quickmenu">
+    <div class="outer">
+        <div class="inner">
+            <div id="quickmenu-scroll">
+                <div id="close-quickmenu"></div>
+                <ul id="quick-projects">
+                                                                        <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap active" data-slide="0"></div>
+                                    <div class="q-timeline" data-number="1">Me</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/1.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="1"></div>
+                                    <div class="q-timeline" data-number="2">Portfolio</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/2.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="2"></div>
+                                    <div class="q-timeline" data-number="3">Commissions</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/3.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="3"></div>
+                                    <div class="q-timeline" data-number="4">GFX</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/4.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="4"></div>
+                                    <div class="q-timeline" data-number="5">VFX</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/5.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="5"></div>
+                                    <div class="q-timeline" data-number="6">Interests</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/6.html"></a>
+                                </div>
+                            </li>
+                                                            </ul>
+            </div>
+        </div>
+    </div>
+</div>
+                        <!-- Content Scroll -->
+    <div id="content-scroll">
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Hero Section -->
+            <div id="hero">
+                <div id="hero-styles">
+                    <div id="hero-caption" class="parallax-onscroll text-align-center">
+                        <div class="inner">
+                            <div class="hero-title"><div>Contact</div></div>
+                            <div class="hero-subtitle"><span>Let's work together</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/Hero Section -->
+
+            <!-- Main Content -->
+            <div id="main-content">
+                <!-- Main Page Content -->
+                <div id="main-page-content">
+
+                    <div class="vc_row large">
+
+                        <div class="row-half-color first half-dark-section" data-bgcolor="#141414"></div>
+                        <div class="row-half-color second half-white-section change-header-color" data-bgcolor="#fff"></div>
+
+                    </div>
+
+                    <!-- Row -->
+                    <div class="vc_row row_padding_top row_padding_bottom white-section change-header-color small" data-bgcolor="#fff">
+
+                        <div class="text-align-center">
+                            <p class="has-animation" data-delay="0">Get in Touch</p>
+                            <h3 class="has-mask" data-delay="0">Find out if I'm available</h3>
+                        </div>
+
+                        <hr><hr>
+
+                        <!-- Contact Formular -->
+                        <div id="contact-formular" class="disable-drag">
+
+                            <div class="text-align-center">
+                                <div id="message"></div>
+                            </div>
+
+                            <br>
+
+                            <form id="contact_form">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="contact_name" id="control_contact_name" style="color: black;">Name <span class="req">*</span></label>
+                                        <input type="text" class="form-control" name="contact_name" id="contact_name" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="contact_email" id="control_contact_email" style="color: black;">Email <span class="req">*</span></label>
+                                        <input type="email" class="form-control" name="contact_email" id="contact_email" required>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="contact_message" id="control_contact_message" style="color: black;">Message <span class="req">*</span></label>
+                                        <textarea class="form-control" name="contact_message" id="contact_message" style="height: 250px;" required></textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div id="capt" class="g-recaptcha" data-sitekey=""></div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="button" id="send_message_contact" onclick="send_message();" class="btn btn-primary">Submit <i class="fas fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <!--/Contact Formular -->
+
+                    </div>
+                    <!--/Row -->
+
+                    <!-- Row -->
+                    <div class="vc_row row_padding_top text-align-center small">
+
+                        <h3 class="has-mask">I remain available for any further information you may need. Get in touch with me now via the below details.</h3>
+
+                        <hr><hr>
+
+                        <div class="one_third has-animation"  data-delay="100">
+                            <div class="clapat-icon">
+                                <i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i>
+                            </div>
+
+                            <h6><a href="mailto:contact@termza.com" class="link"><span>contact@termza.com</span></a></h6>
+                            <p>Email</p>
+                        </div>
+
+                        <div class="one_third has-animation"  data-delay="200">
+                            <div class="clapat-icon">
+                                <i class="fab fa-discord fa-2x" aria-hidden="true"></i>
+                            </div>
+
+                            <h6>Termza</h6>
+                            <p>Discord</p>
+                        </div>
+
+                        <div class=" one_third last has-animation"  data-delay="300">
+                            <div class="clapat-icon">
+                                <i class="fab fa-steam-square fa-2x" aria-hidden="true"></i>
+                            </div>
+
+                            <h6>Termza</h6>
+                            <p>Steam</p>
+                        </div>
+
+                    </div>
+                    <!--/Row -->
+
+                </div>
+                <!--/Main Page Content -->
+
+            </div>
+            <!--/Main Content -->
+
+        </div>
+        <!--/Main -->
+
+            <!-- Footer -->
+    <footer class="hidden">
+        <div id="footer-container">
+
+            <div id="backtotop" class="button-wrap left disable-drag">
+                <div class="icon-wrap parallax-wrap">
+                    <div class="button-icon parallax-element">
+                        <i class="fa fa-angle-up"></i>
+                    </div>
+                </div>
+                <div class="button-text sticky left"><span data-hover="Back Top">Back Top</span></div>
+            </div>
+
+            <div class="footer-middle">
+                <div class="copyright">2019 © <a class="link" target="_blank" href="index.html">Termza</a>. All rights reserved.</div>
+            </div>
+
+            <div class="socials-wrap disable-drag">
+                <div class="socials-icon"><i class="fa fa-share-alt" aria-hidden="true"></i></div>
+                <div class="socials-text">Follow me</div>
+                <ul class="socials">
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://github.com/termza" target="_blank"><i class="fab fa-github" style="font-size: 1.5em;"></i></a></span></li>
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://tiktok.com/id/termzae/" target="_blank"><i class="fab fa-tiktok" style="font-size: 1.5em;"></i></a></span></li>
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://steamcommunity.com/id/aytwos/" target="_blank"><i class="fab fa-steam-symbol" style="font-size: 1.5em;"></i></a></span></li>
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://discord.gg/termza" target="_blank"><i class="fab fa-discord" style="font-size: 1.5em;"></i></a></span></li>
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://www.youtube.com/@termza" target="_blank"><i class="fab fa-youtube" style="font-size: 1.5em;"></i></a></span></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    <!--/Footer -->
+    </div>
+    <!--/Content Scroll -->
+
+    <div id="app"></div>
+
+    <script>
+        $(document).ready(function(){
+            force_gc();
+        });
+    </script>
+
+                </div>
+            </div>
+        </main>
+
+        <div class="cd-cover-layer"></div>
+        <div id="magic-cursor">
+            <div id="ball">
+                <div id="ball-drag-x"></div>
+                <div id="ball-drag-y"></div>
+                <div id="ball-loader"></div>
+            </div>
+        </div>
+        <div id="clone-image"></div>
+        <div id="rotate-device"></div>
+
+            </body>
+
+
+</html>

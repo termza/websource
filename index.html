@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+    
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8">
+    <title>Termza</title>
+
+    <!-- Responsive Design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Metadata -->
+    <meta name="description" content="Order high-quality edits">
+    <meta name="author" content="Term">
+    <meta name="keywords" content="Edit, Montage, Term, Termza, Termz, Editor, Programmer, Dev, Github, Dev.io, Tiktok,tiktok discord, gfx, vfx, Commission">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/Robs_logo_black.png" />
+
+    <!-- Stylesheets -->
+    <link href="assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="assets/style.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Engagement">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-GLhlTQ8i7uFkCpL6p1I8CIpLYjNl+fwYMWIc/6D5YIepHUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
+</head>
+
+<style>
+    .black-logo, .white-logo{
+        animation: jackInTheBox;
+        animation-duration: 2s;
+    }
+
+    label{
+        color: white;
+    }
+
+    .req{
+        color: red;
+    }
+
+    .form-group, .col-md-1, .col-md-2, .col-md-3,
+    .col-md-4, .col-md-5, .col-md-6, .col-md-7,
+    .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12
+    {
+        box-sizing: border-box;
+    }
+
+    .icon-revert{
+        transform: scaleX(-1) !important;
+    }
+
+    @media all and (max-width:767px) {
+        .order-steps .fa-angle-double-right {
+            transform: rotate(90deg);
+        }
+
+        #row_quotes{
+            text-align: center;
+        }
+
+        #row_quotes > .fa-quote-right,
+        #row_quotes > .fa-quote-right{
+            display: none;
+        }
+    }
+
+    .video-container {
+        position: relative;
+        overflow: hidden;
+        height: 0;
+        padding-bottom: 56.25%; /* creates a 16:9 aspect ratio */
+    }
+
+    .video-container iframe,
+    .video-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+    }
+
+    .video-wrap {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .parallax-wrap {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .parallax-element {
+        transform: translate3d(0, 0, 0);
+        transition: transform 0.5s ease-out;
+    }
+
+    .parallax-wrap:hover .parallax-element {
+        transform: translateY(-20px);
+    }
+</style>
+
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="../cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+<script src="../cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js" ></script>
+<script src="../cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/utils/Draggable.min.js" ></script>
+<script src='../cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js'></script>
+<script src='../cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js'></script>
+<script src="../vjs.zencdn.net/7.10.2/video.min.js"></script>
+<script src="assets/js/clapatwebgl.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/scripts.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-99KM2QZ2XL"></script>
+<script src="../www.google.com/recaptcha/apib091.js?render=explicit" async defer></script>
+<script src="https://www.paypal.com/sdk/js?client-id=Ae5SQLBuvcazAd2qklzY5LgAOn7m3Rlu0LjAKooeD89Zx27DTwQfsNs__7FYgHiTtX9CfGJ3bZXZnaXc&amp;currency=EUR"></script>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-99KM2QZ2XL');
+</script>
+
+<script>
+    function send_message(){
+        $.ajax({
+            url: "/contact/submit",
+            data: $('#contact_form').serialize(),
+            type: 'POST',
+            success: function (data) {
+                if(data == "1"){
+                    $('#message').text("Message successfully sent !");
+                    $('#message').attr('style', "color: green;");
+                }else{
+                    $('#message').text("Error, message not sent");
+                    $('#message').attr('style', "color: red;");
+                }
+            },
+
+            error: function (e, e2, e3) {
+                $('#message').text("Error, message not sent");
+                $('#message').attr('style', "color: red;");
+            }
+        });
+    }
+</script>            </head>
+    <body class="hidden hidden-ball smooth-scroll drag-scroll1" data-cursor-default-color="#f33a3a" data-cursor-hover-color="#f33a3a">
+        <main>
+            <div class="preloader-wrap" data-firstline="Stay" data-secondline="Relaxed">
+    <div class="outer">
+        <div class="inner">
+            <div class="percentage-wrapper"><div class="percentage" id="precent"></div></div>
+            <div class="trackbar">
+                <div class="loadbar"></div>
+            </div>
+        </div>
+    </div>
+</div>            <div class="cd-index cd-main-content">
+                <div id="page-content" class="light-content" data-bgcolor="#141414">
+                    <header class="fullscreen-menu">
+    <div id="header-container">
+
+        <!-- Logo -->
+        <div id="logo" class="hide-ball disable-drag">
+            <a class="ajax-link" data-type="page-transition" href="index.html">
+                <img class="black-logo" src="assets/images/Robs_logo_black.png" alt="Termz">
+                <img class="white-logo" src="assets/images/Robs_logo_white.png" alt="Termz">
+            </a>
+        </div>
+        <!--/Logo -->
+
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-height">
+                <div class="outer">
+                    <div class="inner">
+                        <ul data-breakpoint="10025" class="flexnav">
+                            <li class="link menu-timeline">
+                                <a href="#">
+                                    <div class="before-span">
+                                        <span data-hover="Termza">Termza</span>
+                                    </div>
+                                </a>
+                                <ul>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/1.html">Me</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/2.html">Portfolio</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/3.html">Commission</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/4.html">GFX</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/5.html">VFX</a>
+                                        </li>
+                                                                            <li>
+                                            <a class="ajax-link" data-type="page-transition" href="project/6.html">Interests</a>
+                                        </li>
+                                                                    </ul>
+                            </li>
+                            <li class="link menu-timeline">
+                                <a href="#">
+                                    <div class="before-span">
+                                        <span data-hover="Order">Order</span>
+                                    </div>
+                                </a>
+                                <ul>
+                                    <li><a class="ajax-link" data-type="page-transition" href="order.html" >Place an order</a></li>
+                                    <li><a class="ajax-link" data-type="page-transition" href="trackOrder.html">Track an order</a></li>
+                                </ul>
+                            </li>
+                            <li class="link menu-timeline">
+                                <a class="ajax-link" data-type="page-transition" href="about.html">
+                                    <div class="before-span">
+                                        <span data-hover="About">About</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="link menu-timeline" onclick="force_gc();">
+                                <a class="ajax-link" data-type="page-transition" href="contact.html">
+                                    <div class="before-span">
+                                        <span data-hover="Contact">Contact</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!--/Navigation -->
+
+        <!-- Menu Burger -->
+        <div class="button-wrap right menu disable-drag">
+            <div class="icon-wrap parallax-wrap">
+                <div class="button-icon parallax-element">
+                    <div id="burger-wrapper">
+                        <div id="menu-burger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-text sticky right"><span data-hover="Menu">Menu</span></div>
+        </div>
+        <!--/Menu Burger -->
+
+    </div>
+</header>                    <!-- Quick Menu -->
+<div id="quickmenu">
+    <div class="outer">
+        <div class="inner">
+            <div id="quickmenu-scroll">
+                <div id="close-quickmenu"></div>
+                <ul id="quick-projects">
+                                                                        <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap active" data-slide="0"></div>
+                                    <div class="q-timeline" data-number="1">Me</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/1.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="1"></div>
+                                    <div class="q-timeline" data-number="2">Portfolio</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/2.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="2"></div>
+                                    <div class="q-timeline" data-number="3">Commissions</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/3.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="3"></div>
+                                    <div class="q-timeline" data-number="4">GFX</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/4.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="4"></div>
+                                    <div class="q-timeline" data-number="5">VFX</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/5.html"></a>
+                                </div>
+                            </li>
+                                                    <li class="hide-ball">
+                                <div class="quick-title">
+                                    <div class="slide-wrap " data-slide="5"></div>
+                                    <div class="q-timeline" data-number="6">Interests</div>
+                                    <a class="quick-link" data-type="page-transition" href="project/6.html"></a>
+                                </div>
+                            </li>
+                                                            </ul>
+            </div>
+        </div>
+    </div>
+</div>
+                        <!-- Content Scroll -->
+    <div id="content-scroll">
+        <!-- Showcase Slider Holder -->
+        <div id="showcase-slider-webgl-holder" class="disable-drag">
+            <div id="slider" class="swiper-container">
+                <div id="trigger-slides" class="swiper-wrapper">
+                                            <div class="swiper-slide" data-title="Termza" data-subtitle="Software Engineering">
+                            <div class="slide-wrap active" data-slide="0"></div>
+                            <div class="outer">
+                                <div class="inner">
+                                    <a class="slide-link" data-type="page-transition" data-firstline="View" data-secondline="Termza" href="project/1.html">
+                                        <div class="slide-title-wrapper">
+                                            <div class="slide-title"><span>Termza</span></div>
+                                            <div class="subtitle"><span>Fullstack Dev</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="swiper-slide" data-title="Portfolio" data-subtitle="Programmer">
+                            <div class="slide-wrap " data-slide="1"></div>
+                            <div class="outer">
+                                <div class="inner">
+                                    <a class="slide-link" data-type="page-transition" data-firstline="View" data-secondline="Portfolio" href="project/2.html">
+                                        <div class="slide-title-wrapper">
+                                            <div class="slide-title"><span>Portfolio</span></div>
+                                            <div class="subtitle"><span>Programmer</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="swiper-slide" data-title="Commission" data-subtitle="Editor">
+                            <div class="slide-wrap " data-slide="2"></div>
+                            <div class="outer">
+                                <div class="inner">
+                                    <a class="slide-link" data-type="page-transition" data-firstline="View" data-secondline="Comms" href="project/3.html">
+                                        <div class="slide-title-wrapper">
+                                            <div class="slide-title"><span>Commission</span></div>
+                                            <div class="subtitle"><span>Editor</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="swiper-slide" data-title="Projects" data-subtitle="GFX">
+                            <div class="slide-wrap " data-slide="3"></div>
+                            <div class="outer">
+                                <div class="inner">
+                                    <a class="slide-link" data-type="page-transition" data-firstline="View GFX" data-secondline="Projects" href="project/4.html">
+                                        <div class="slide-title-wrapper">
+                                            <div class="slide-title"><span>Projects</span></div>
+                                            <div class="subtitle"><span>GFX</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="swiper-slide" data-title="Projects" data-subtitle="VFX">
+                            <div class="slide-wrap " data-slide="4"></div>
+                            <div class="outer">
+                                <div class="inner">
+                                    <a class="slide-link" data-type="page-transition" data-firstline="View VFX" data-secondline="Projects" href="project/5.html">
+                                        <div class="slide-title-wrapper">
+                                            <div class="slide-title"><span>Projects</span></div>
+                                            <div class="subtitle"><span>VFX</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="swiper-slide" data-title="Interests" data-subtitle="University Student">
+                            <div class="slide-wrap " data-slide="5"></div>
+                            <div class="outer">
+                                <div class="inner">
+                                    <a class="slide-link" data-type="page-transition" data-firstline="View My" data-secondline="Interests" href="project/6.html">
+                                        <div class="slide-title-wrapper">
+                                            <div class="slide-title"><span>Interests</span></div>
+                                            <div class="subtitle"><span>University Student</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+
+            <div class="showcase-pagination-wrap">
+                <div class="showcase-pagination"></div>
+            </div>
+
+            <div id="fixed-borders">
+                <div class="caption-border left"></div>
+                <div class="caption-border right"></div>
+            </div>
+        </div>
+        <!-- Showcase Slider Holder -->
+
+        <!-- canvas slider -->
+        <div id="canvas-slider" class="canvas-slider">
+            <div class="slider-img" data-slide="0"><img class="slide-img" src="assets/images/edits/01_dark.png" /></div>
+            <div class="slider-img" data-slide="1"><img class="slide-img" src="assets/images/edits/02_dark.png" /></div>
+            <div class="slider-img" data-slide="2"><img class="slide-img" src="assets/images/edits/03_dark.png" /></div>
+            <div class="slider-img" data-slide="3"><img class="slide-img" src="assets/images/edits/04_dark_v2.png" /></div>
+            <div class="slider-img" data-slide="4"><img class="slide-img" src="assets/images/edits/05_dark_v2.png" /></div>
+            <div class="slider-img" data-slide="5"><img class="slide-img" src="assets/images/edits/06_dark_v2.png" /></div>
+    </div>
+        <!--/canvas slider -->
+
+    </div>
+    <!--/Content Scroll -->
+
+        <!-- Footer -->
+    <footer class="hidden">
+        <div id="footer-container">
+
+            <div class="button-wrap left disable-drag quickmenu">
+                <div class="icon-wrap parallax-wrap">
+                    <div class="button-icon parallax-element">
+                        <i class="fa fa-sort"></i>
+                    </div>
+                </div>
+                <div class="button-text sticky left"><span data-hover="All Projects" data-off="Close All">All Projects</span></div>
+            </div>
+
+            <div class="socials-wrap disable-drag">
+                <div class="socials-icon"><i class="fa fa-share-alt" aria-hidden="true"></i></div>
+                <div class="socials-text">Follow me</div>
+                <ul class="socials">
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://github.com/termza" target="_blank"><i class="fab fa-github" style="font-size: 1.5em;"></i></a></span></li>
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://tiktok.com/id/termzae/" target="_blank"><i class="fab fa-tiktok" style="font-size: 1.5em;"></i></a></span></li>
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://steamcommunity.com/id/aytwos/" target="_blank"><i class="fab fa-steam-symbol" style="font-size: 1.5em;"></i></a></span></li>
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://discord.gg/termza" target="_blank"><i class="fab fa-discord" style="font-size: 1.5em;"></i></a></span></li>
+                    <li><span class="parallax-wrap"><a class="parallax-element" href="https://www.youtube.com/@termza" target="_blank"><i class="fab fa-youtube" style="font-size: 1.5em;"></i></a></span></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    <!--/Footer -->
+
+    <div id="app"></div>
+                </div>
+            </div>
+        </main>
+
+        <div class="cd-cover-layer"></div>
+        <div id="magic-cursor">
+            <div id="ball">
+                <div id="ball-drag-x"></div>
+                <div id="ball-drag-y"></div>
+                <div id="ball-loader"></div>
+            </div>
+        </div>
+        <div id="clone-image"></div>
+        <div id="rotate-device"></div>
+
+            </body>
+
+
+
+</html>
